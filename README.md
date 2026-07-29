@@ -63,7 +63,15 @@ live in `public/images/`.
 - **Social links** are empty in `app/site.ts`, so the "Follow Us" block is
   hidden. Fill in `social.facebook` / `social.instagram` / `social.x` to show
   it.
-- **No logo asset** exists yet, so the header uses a text wordmark.
+- **Logo** (`assets/logo.png`) is a cream-on-black lockup with a tagline.
+  `public/images/logo.png` (header) and `app/icon.png` (favicon) are cropped
+  and recolored from it. Because the source is light-on-dark and the header
+  is white, the header version is recolored to the page's ink tone rather
+  than used as-is, and the tagline is cropped out since the header is a
+  compact single-line bar. If the intent was a dark header to match the
+  logo's native card look instead, that's a one-line change in
+  `app/components/Header.tsx` (`bg-white/95` → e.g. `bg-black`) plus
+  re-cropping the untinted original.
 
 ## Deploy to Vercel
 

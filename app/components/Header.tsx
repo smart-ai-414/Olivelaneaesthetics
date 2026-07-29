@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { site } from "../site";
 
 /**
@@ -21,13 +22,15 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 shadow-sm backdrop-blur">
       <div className="mx-auto flex max-w-[1442px] items-center justify-between gap-6 px-6 py-4">
-        <a href="#top" className="flex flex-col leading-none">
-          <span className="font-serif text-xl tracking-[0.14em] text-ink uppercase sm:text-2xl">
-            Olive Lane
-          </span>
-          <span className="mt-1 text-[10px] font-semibold tracking-[0.34em] text-brand uppercase sm:text-[11px]">
-            Aesthetics
-          </span>
+        <a href="#top" className="shrink-0">
+          <Image
+            src="/images/logo.png"
+            alt={site.name}
+            width={1214}
+            height={294}
+            priority
+            className="h-11 w-auto sm:h-[52px]"
+          />
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex">
