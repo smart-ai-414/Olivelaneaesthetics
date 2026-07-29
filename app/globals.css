@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette lifted from the MedCove Aesthetics page */
+  --color-cream: #f5ede3; /* promo band background */
+  --color-blush: #f4e3d7; /* intro band background */
+  --color-shell: #f5ede8; /* "Get Started" band background */
+  --color-brand: #b26501; /* primary brown/amber accent */
+  --color-gold: #c8a96e; /* thin dividers */
+  --color-sand: #c8a882; /* hero title box border */
+  --color-clay: #b9937c; /* intro photo frame */
+  --color-stone: #9b8074; /* service card photo frame */
+  --color-cocoa: #965833; /* service headings */
+  --color-ink: #1e1e1e; /* display headings */
+  --color-body: #666666; /* default body copy */
+  --color-body-muted: #555555; /* intro body copy */
+
+  /* Footer band. Single source of truth — see note in components/Footer.tsx */
+  --color-footer: #3c2f26;
+
+  --font-sans: var(--font-open-sans);
+  --font-display: var(--font-zen-antique-soft);
+  --font-serif: var(--font-noto-serif-kr);
+  --font-serif-alt: var(--font-noto-serif-devanagari);
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-body);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Divi renders the service/intro copy as WYSIWYG rich text. These rules
+   reproduce its paragraph and list rhythm without per-element classes. */
+.rich-text ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.rich-text p + p,
+.rich-text p + ul,
+.rich-text ul + p {
+  margin-top: 1em;
+}
