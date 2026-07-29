@@ -1,5 +1,33 @@
 import { site } from "../site";
 
+/**
+ * Port of the Divi promo row. Its `custom_css_free_form` is the authority on
+ * layout, not the module settings:
+ *
+ *   selector { display:flex; align-items:stretch; min-height:0 !important }
+ *   selector .et_pb_column { display:flex; flex-direction:column;
+ *     justify-content:flex-start; align-items:center; padding:0 30px }
+ *   selector .et_pb_column:nth-child(2) { justify-content:center }
+ *   col 1/3 inner blocks: width 280px, text-align left
+ *   col 2 inner blocks:   width 340px, text-align left, titles nowrap
+ *   selector .et_pb_column + .et_pb_column { border-left:1px solid #C8A96E }
+ *
+ * Two consequences worth spelling out, because the module settings suggest
+ * otherwise: `min-height: 0` cancels the row's `min_height="428.3px"`, so the
+ * band is only as tall as its content; and `align-items: center` centers each
+ * fixed-width block inside its column, so the copy sits well right of the
+ * 30px column padding.
+ *
+ * Below 767px the same stylesheet stacks the columns, makes every block full
+ * width and centred, and turns the vertical rules into horizontal ones.
+ */
+
+/**
+ * Both blurb icons are sized to the full height of the two text lines beside
+ * them and centred against that block, so icon and copy read as one row.
+ */
+const ICON_CLASS = "h-[50px] w-[50px] shrink-0 pr-2";
+
 /** Divi icon f274 — calendar with a check. */
 function CalendarCheckIcon() {
   return (
@@ -7,10 +35,10 @@ function CalendarCheckIcon() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="#383838"
-      strokeWidth="1.5"
+      strokeWidth="2.1"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-9 w-9 shrink-0"
+      className={ICON_CLASS}
       aria-hidden="true"
     >
       <rect x="3" y="5" width="18" height="16" rx="2" />
@@ -26,10 +54,10 @@ function PersonIcon() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="#383838"
-      strokeWidth="1.5"
+      strokeWidth="2.1"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-9 w-9 shrink-0"
+      className={ICON_CLASS}
       aria-hidden="true"
     >
       <circle cx="12" cy="8" r="4" />
@@ -48,26 +76,29 @@ export default function PromoBand() {
       style={{ backgroundImage: "url(/images/promo-bg.png)" }}
       aria-label={promo.eyebrow}
     >
-      <div className="mx-auto grid max-w-[1442px] items-stretch gap-0 px-0 py-6 md:min-h-[428px] md:grid-cols-[33%_34%_33%] md:py-0">
+      <div className="mx-auto flex max-w-[1442px] flex-col items-stretch md:flex-row">
         {/* Column 1 — the offer */}
-        <div className="flex flex-col items-center justify-center px-[30px] py-6 text-center md:items-start md:justify-start md:pt-10 md:text-left">
-          <p className="text-base font-bold tracking-[2px] text-brand uppercase">
-            {promo.eyebrow}
-          </p>
-          <p className="mt-6 font-display text-[48px] leading-none tracking-[4px] text-ink">
-            {promo.headline}
-          </p>
-          <p className="mt-5 font-display text-[27px] leading-none tracking-[1.5px] text-ink uppercase">
-            {promo.subject}
-          </p>
-          <p className="mt-7 text-[15px] font-semibold">
-            when you spend <strong className="text-black">$600 or more</strong>
-          </p>
+        <div className="flex flex-col items-center justify-start px-[30px] py-5 md:w-[33%] md:py-[34px]">
+          <div className="w-full text-center md:w-[280px] md:text-left">
+            <p className="text-base font-bold tracking-[2px] text-brand uppercase">
+              {promo.eyebrow}
+            </p>
+            <p className="mt-5 font-display text-[48px] font-bold leading-none tracking-[4px] text-ink">
+              {promo.headline}
+            </p>
+            <p className="mt-5 font-display text-[27px] leading-none tracking-[1.5px] text-ink uppercase">
+              {promo.subject}
+            </p>
+            <p className="mt-6 text-[15px] font-semibold">
+              when you spend{" "}
+              <strong className="text-black">$600 or more</strong>
+            </p>
+          </div>
         </div>
 
-        {/* Column 2 — reassurance */}
-        <div className="flex flex-col items-center justify-center gap-8 border-t border-gold px-[30px] py-8 md:items-start md:border-t-0 md:border-l md:py-0">
-          <div className="flex w-full max-w-[340px] items-start gap-2 text-center md:text-left">
+        {/* Column 2 — reassurance. Vertically centred against the tallest column. */}
+        <div className="flex flex-col items-center justify-center border-t border-gold px-[30px] py-6 md:w-[34%] md:border-t-0 md:border-l md:py-[34px]">
+          <div className="flex w-full items-center text-center md:w-[340px] md:text-left">
             <CalendarCheckIcon />
             <div>
               <h4 className="text-base font-bold text-ink md:whitespace-nowrap">
@@ -76,7 +107,7 @@ export default function PromoBand() {
               <p className="mt-1 text-[14.5px] font-semibold">{promo.expires}</p>
             </div>
           </div>
-          <div className="flex w-full max-w-[340px] items-start gap-2 text-center md:text-left">
+          <div className="mt-[30px] flex w-full items-center text-center md:w-[340px] md:text-left">
             <PersonIcon />
             <div>
               <h4 className="text-base font-bold text-ink md:whitespace-nowrap">
@@ -90,26 +121,30 @@ export default function PromoBand() {
         </div>
 
         {/* Column 3 — call to action */}
-        <div className="flex flex-col items-center border-t border-gold px-[30px] py-8 text-center md:items-start md:border-t-0 md:border-l md:pt-[54px] md:text-left">
-          <div className="w-full max-w-[280px]">
+        <div className="flex flex-col items-center justify-start border-t border-gold px-[30px] py-6 md:w-[33%] md:border-t-0 md:border-l md:py-[34px]">
+          <div className="w-full text-center md:w-[280px] md:text-left">
             <a
               href={site.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-brand px-[22px] py-[10px] text-[19px] font-medium text-white transition-opacity hover:opacity-90 md:whitespace-nowrap"
+              className="inline-block bg-brand px-4 py-[6px] text-[19px] leading-[1.7em] text-white transition-opacity hover:opacity-90 md:whitespace-nowrap"
             >
               BOOK YOUR APPOINTMENT
             </a>
-            <div className="mt-6 space-y-2 text-[15px] font-semibold">
-              <p>How to Redeem:</p>
-              <p>
+            <div className="mt-[41px] text-[15px] font-semibold">
+              <p className="leading-[0.8em]">How to Redeem:</p>
+              <p className="mt-[15px] leading-[0.8em]">
                 Mention code{" "}
                 <span className="text-base font-bold text-brand">
                   {promo.code}
                 </span>
               </p>
-              <p>when booking or at your visit.</p>
-              <p>New and existing patients welcome.</p>
+              <p className="mt-[15px] leading-[0.8em]">
+                when booking or at your visit.
+              </p>
+              <p className="mt-[15px] leading-[0.8em]">
+                New and existing patients welcome.
+              </p>
             </div>
           </div>
         </div>

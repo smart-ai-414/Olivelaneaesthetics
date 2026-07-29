@@ -75,7 +75,7 @@ export default function Services() {
           />
           <h2 className="text-[20px] text-cocoa uppercase">Wrinkle Reducers</h2>
           <p className="mt-3 max-w-[380px] font-serif-alt text-[18px] font-bold text-black">
-            Botox|Xeomin|Dysport
+            Botox | Xeomin | Dysport
           </p>
           <div className="rich-text mt-3 max-w-[380px] text-base leading-[1.7]">
             <p>

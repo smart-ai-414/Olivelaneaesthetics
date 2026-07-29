@@ -58,11 +58,11 @@ live in `public/images/`.
   contains that section twice and the live MedCove page renders it twice too.
   If that was accidental, delete the second `<HeroBanner />` in
   `app/page.tsx`.
-- **Footer color** is a deep cocoa from the page palette rather than
-  MedCove's corporate blue. Change `--color-footer` in `app/globals.css` to
-  `#0b6cb1` to go back.
+- **Footer keeps MedCove's corporate blue** (`--color-footer` in
+  `app/globals.css`, `#0b6cb1`) at the client's request.
 - **Social links** are empty in `app/site.ts`, so the "Follow Us" block is
-  hidden. Fill in `social.instagram` / `social.facebook` to show it.
+  hidden. Fill in `social.facebook` / `social.instagram` / `social.x` to show
+  it.
 - **No logo asset** exists yet, so the header uses a text wordmark.
 
 ## Deploy to Vercel

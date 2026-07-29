@@ -15,8 +15,8 @@
   --color-body: #666666; /* default body copy */
   --color-body-muted: #555555; /* intro body copy */
 
-  /* Footer band. Single source of truth — see note in components/Footer.tsx */
-  --color-footer: #3c2f26;
+  /* Footer band — MedCove's corporate blue, kept as-is for this footer. */
+  --color-footer: #0b6cb1;
 
   --font-sans: var(--font-open-sans);
   --font-display: var(--font-zen-antique-soft);

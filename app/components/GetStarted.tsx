@@ -11,7 +11,7 @@ export default function GetStarted() {
           href={site.bookingUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-flex items-center gap-3 rounded-full bg-black py-[14px] pr-[70px] pl-[50px] text-[17px] tracking-[3px] text-white transition-opacity hover:opacity-85"
+          className="mt-4 inline-flex items-center gap-3 rounded-full bg-black py-[8px] pr-[70px] pl-[50px] text-[17px] tracking-[3px] text-white transition-opacity hover:opacity-85"
         >
           BOOK
           <span aria-hidden="true">&rarr;</span>

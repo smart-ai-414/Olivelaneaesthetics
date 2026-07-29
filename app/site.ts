@@ -30,6 +30,7 @@ export const site = {
   social: {
     facebook: "",
     instagram: "",
+    x: "",
   },
 
   promo: {
