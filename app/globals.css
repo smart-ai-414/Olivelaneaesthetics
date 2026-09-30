@@ -1,48 +1,120 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette lifted from the MedCove Aesthetics page */
-  --color-cream: #f5ede3; /* promo band background */
-  --color-blush: #f4e3d7; /* intro band background */
-  --color-shell: #f5ede8; /* "Get Started" band background */
-  --color-brand: #b26501; /* primary brown/amber accent */
-  --color-gold: #c8a96e; /* thin dividers */
-  --color-sand: #c8a882; /* hero title box border */
-  --color-clay: #b9937c; /* intro photo frame */
-  --color-stone: #9b8074; /* service card photo frame */
-  --color-cocoa: #965833; /* service headings */
-  --color-ink: #1e1e1e; /* display headings */
-  --color-body: #666666; /* default body copy */
-  --color-body-muted: #555555; /* intro body copy */
+  /* Visual direction: warm ivory, beige, olive, deep olive, white. */
+  --color-ivory: #f7f4ee;
+  --color-beige: #d9d0c2;
+  --color-olive: #78806a;
+  --color-olive-ink: #5e6550;
+  --color-deep: #4b493e;
+  --color-body: #524f46;
 
-  /* Footer band — MedCove's corporate blue, kept as-is for this footer. */
-  --color-footer: #0b6cb1;
-
-  --font-sans: var(--font-open-sans);
-  --font-display: var(--font-zen-antique-soft);
-  --font-serif: var(--font-noto-serif-kr);
-  --font-serif-alt: var(--font-noto-serif-devanagari);
-}
-
-body {
-  background: #ffffff;
-  color: var(--color-body);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-source-sans), "Segoe UI", sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
-/* Divi renders the service/intro copy as WYSIWYG rich text. These rules
-   reproduce its paragraph and list rhythm without per-element classes. */
-.rich-text ul {
-  list-style: disc;
-  padding-left: 1.5rem;
+body {
+  background: var(--color-ivory);
+  color: var(--color-body);
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
 }
 
-.rich-text p + p,
-.rich-text p + ul,
-.rich-text ul + p {
-  margin-top: 1em;
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 500;
+    color: var(--color-deep);
+    text-wrap: balance;
+  }
+}
+
+::selection {
+  background: #d9d0c2;
+  color: #4b493e;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-deep);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .faq-icon {
+    transition: none;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  border-radius: 0.6rem;
+  padding: 0.75rem 1.05rem;
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.btn-primary {
+  background: var(--color-olive-ink);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--color-deep);
+}
+
+.btn-secondary {
+  border: 1px solid color-mix(in srgb, var(--color-deep) 28%, transparent);
+  background: transparent;
+  color: var(--color-deep);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-deep);
+  background: #fff;
+}
+
+.btn-sm {
+  min-height: 2.5rem;
+  padding: 0.55rem 0.85rem;
+  letter-spacing: 0.12em;
+}
+
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-icon {
+  transition: transform 160ms ease;
+}
+
+details[open] .faq-icon {
+  transform: rotate(45deg);
 }

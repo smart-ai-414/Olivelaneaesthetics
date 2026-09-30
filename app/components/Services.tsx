@@ -1,164 +1,169 @@
-import Image from "next/image";
+import BookLink from "./BookLink";
 
-const botoxUnits = [
-  ["Glabella (between the eyes)", "15-20 units"],
-  ["Forehead", "10-21 units"],
-  ["Crowsfeet", "5-20 units"],
-  ["Eyebrow Lift", "10-20 units"],
-  ["Full Upper Face", "30-60 units"],
-  ["Chin", "6-12 units"],
-  ["Downturned Smile", "6-26 units"],
-  ["TMJ/Facial Slimming", "30-40 units"],
-  ["Nefertiti Neck Lift", "40-80 units"],
-  ["Migraine/Heachaches", "30-100 units"],
-  ["Underarms (sweating)", "30-60 units"],
+const wrinkleAreas = [
+  "Botox",
+  "Dysport",
+  "Xeomin",
+  "Lip Flip",
+  "Forehead Lines",
+  "Frown Lines",
+  "Crow's Feet",
+];
+
+const fillerAreas = [
+  "Lip Enhancement",
+  "Cheeks and Midface",
+  "Chin and Jawline",
+  "Facial Volume Restoration",
 ];
 
 const fillers = [
   {
     name: "Restylane L",
-    price: "$500 per syringe",
-    detail: "Smooth filler for fine lines, subtle volume, and light lip enhancement",
+    price: "$500",
+    detail: "For select facial lines and subtle volume enhancement.",
   },
   {
     name: "Restylane Lyft",
-    price: "$600 per syringe",
-    detail: "Thicker filler for deeper volume and facial structure (cheeks, midface)",
+    price: "$600",
+    detail: "For select areas requiring structural support and volume.",
   },
   {
     name: "Restylane Defyne",
-    price: "$650 per syringe",
-    detail: "Flexible filler for natural movement and deeper lines (lower face)",
+    price: "$650",
+    detail: "For select deeper facial folds and areas requiring flexibility.",
   },
   {
     name: "Restylane Kysse",
-    price: "$750 per syringe",
-    detail: "Our preferred lip filler for soft, natural-looking lips",
+    price: "$750",
+    detail: "Designed for lip enhancement and natural-looking lip movement.",
   },
 ];
 
-function ServicePhoto({
-  src,
-  alt,
-  align,
-}: {
-  src: string;
-  alt: string;
-  align: "left" | "right";
-}) {
+function AreaList({ areas }: { areas: string[] }) {
   return (
-    <div
-      className={`mb-5 ${align === "right" ? "lg:ml-auto" : ""} mx-auto w-full max-w-[410px] lg:mx-0`}
-    >
-      <Image
-        src={src}
-        alt={alt}
-        width={410}
-        height={400}
-        sizes="410px"
-        className="h-[400px] w-full rounded-tr-[20px] rounded-bl-[20px] border border-stone object-cover shadow-[0_1px_10px_rgba(0,0,0,0.3)]"
-      />
-    </div>
+    <ul className="mt-8 flex flex-wrap gap-2">
+      {areas.map((area) => (
+        <li
+          key={area}
+          className="rounded-full border border-beige bg-ivory px-3.5 py-1.5 text-sm text-deep"
+        >
+          {area}
+        </li>
+      ))}
+    </ul>
   );
 }
 
 export default function Services() {
   return (
-    <section id="services" className="pt-[5px] pb-[10px]">
-      <div className="mx-auto grid max-w-[1080px] gap-12 px-6 py-8 lg:grid-cols-2">
-        {/* Wrinkle reducers */}
-        <div>
-          <ServicePhoto
-            src="/images/wrinkle-reducers.avif"
-            alt="Diagram of typical neurotoxin treatment areas and unit ranges across the face"
-            align="left"
-          />
-          <h2 className="text-[20px] text-cocoa uppercase">Wrinkle Reducers</h2>
-          <p className="mt-3 max-w-[380px] font-serif-alt text-[18px] font-bold text-black">
-            Botox | Xeomin | Dysport
-          </p>
-          <div className="rich-text mt-3 max-w-[380px] text-base leading-[1.7]">
-            <p>
-              Turn back the clock with our wrinkle-reducing treatments, designed
-              to smooth expression lines and prevent new ones from forming. Using
-              advanced neurotoxins such as Botox, Dysport and Xeomin our skilled
-              providers target the tiny muscles that cause fine lines, leaving
-              your skin refreshed, youthful and naturally radiant. Treatments can
-              enhance features with options like a subtle lip flip for a
-              fuller-looking smile.
+    <section
+      id="treatments"
+      className="bg-white px-5 py-16 sm:px-6 sm:py-24 lg:px-8"
+      aria-label="Treatments"
+    >
+      <div className="mx-auto max-w-[1120px]">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.8fr)] lg:gap-16">
+          <div>
+            <h2 id="wrinkle-heading" className="text-4xl sm:text-5xl">
+              Wrinkle Relaxers
+            </h2>
+            <div className="mt-5 max-w-xl space-y-4 text-[1.05rem] leading-relaxed">
+              <p>
+                Smooth the appearance of expression lines with personalized
+                injectable treatments.
+              </p>
+              <p>
+                Olive Lane offers Botox, Dysport, and Xeomin to address certain
+                facial lines and help create a refreshed, natural-looking
+                appearance. Your provider will help determine which treatment may
+                be appropriate for your goals.
+              </p>
+            </div>
+            <AreaList areas={wrinkleAreas} />
+            <p className="mt-4 text-sm leading-relaxed">
+              Other provider-approved treatment areas are available.
             </p>
           </div>
 
-          <div id="pricing" className="mt-5 max-w-[380px] scroll-mt-28">
-            <p className="font-serif-alt text-[18px] text-black">
-              Botox &nbsp;$11/Unit
+          <div className="rounded-[22px] bg-beige px-6 py-7 sm:px-8 lg:sticky lg:top-28">
+            <p className="text-xs font-semibold tracking-[0.16em] text-deep uppercase">
+              Starting prices
             </p>
-            <p className="mt-3 font-serif-alt text-[18px] text-black">
-              Dysport/Xeomin $10/Unit
+            <dl className="mt-4 divide-y divide-deep/10">
+              <div className="flex items-baseline justify-between gap-4 py-4">
+                <dt className="text-deep">Botox</dt>
+                <dd className="text-right font-serif text-[1.85rem] leading-none text-deep">
+                  $11
+                  <span className="ml-1 font-sans text-sm font-medium text-body">
+                    / unit
+                  </span>
+                </dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 py-4">
+                <dt className="text-deep">Dysport / Xeomin</dt>
+                <dd className="text-right font-serif text-[1.85rem] leading-none text-deep">
+                  $10
+                  <span className="ml-1 font-sans text-sm font-medium text-body">
+                    / unit
+                  </span>
+                </dd>
+              </div>
+            </dl>
+            <p className="mt-2 text-sm leading-relaxed text-deep">
+              These are starting prices. Your provider will review the cost of
+              your plan.
             </p>
-            <div className="rich-text mt-4 text-base leading-[1.7]">
-              <p>The following are approximate units per area:</p>
-              <ul>
-                {botoxUnits.map(([area, units]) => (
-                  <li key={area}>
-                    {area}: {units}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
 
-        {/* Dermal fillers */}
-        <div>
-          <ServicePhoto
-            src="/images/dermal-fillers.avif"
-            alt="Diagram of dermal filler treatment areas across the face, neck and hands"
-            align="right"
-          />
-          <div className="lg:ml-auto lg:max-w-[395px]">
-            <h2 className="text-[20px] text-cocoa uppercase">Dermal Fillers</h2>
-            <div className="rich-text mt-3 text-base leading-[1.7]">
-              <p>
-                As we age, the natural volume and elasticity of our youthful skin
-                diminishes which leads to the formation of fine lines, wrinkles,
-                and folds. Dermal filler is a gel-like injectable that instantly
-                restores volume loss and smooths away deep lines and facial
-                creases, revealing a more youthful appearance.
-              </p>
-              <p>
-                Dermal filler injections are FDA-approved and a generally safe
-                alternative to more invasive surgical treatments. Dermal filler
-                treatments are extremely popular, with over 1 million men and
-                women undergoing the treatment each year.
-              </p>
-            </div>
+        <BookLink className="btn btn-primary mt-10">
+          Book your appointment
+          <span aria-hidden="true">&rarr;</span>
+        </BookLink>
 
-            <div className="mt-5 space-y-4 text-base text-black">
-              {fillers.map((filler) => (
-                <div key={filler.name}>
-                  <ul className="list-disc pl-6">
-                    <li>
-                      <strong>
-                        {filler.name} &ndash; {filler.price}
-                      </strong>
-                    </li>
-                  </ul>
-                  <p className="mt-2 leading-[1.5]">{filler.detail}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="rich-text mt-5 text-base leading-[1.7]">
-              <p>
-                Don&rsquo;t worry, we don&rsquo;t expect you to know which
-                product to choose. We&rsquo;re transparent with our pricing so
-                you know exactly what to expect. Our aesthetic experts will guide
-                you and recommend the best option to achieve natural-looking
-                results.
-              </p>
-            </div>
+        <div className="mt-20 border-t border-beige pt-16 sm:mt-24 sm:pt-20">
+          <h2 id="filler-heading" className="text-4xl sm:text-5xl">
+            Dermal Fillers
+          </h2>
+          <div className="mt-5 max-w-2xl space-y-4 text-[1.05rem] leading-relaxed">
+            <p>
+              Restore facial volume and enhance your natural features with
+              personalized dermal filler treatments.
+            </p>
+            <p>
+              Our providers offer filler options designed to address volume loss,
+              enhance facial contours, and create balanced, natural-looking
+              results. Every treatment plan is tailored to your individual anatomy
+              and goals.
+            </p>
           </div>
+          <AreaList areas={fillerAreas} />
+          <p className="mt-4 text-sm leading-relaxed">
+            Other provider-approved areas are available.
+          </p>
+
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+            {fillers.map((filler) => (
+              <li
+                key={filler.name}
+                className="flex flex-col rounded-[22px] border border-beige bg-ivory p-6 sm:p-7"
+              >
+                <h3 className="text-[1.85rem] leading-tight">{filler.name}</h3>
+                <p className="mt-3 font-serif text-[2rem] leading-none text-deep">
+                  {filler.price}
+                  <span className="ml-2 font-sans text-sm font-medium text-body">
+                    per syringe
+                  </span>
+                </p>
+                <p className="mt-4 flex-1 leading-relaxed">{filler.detail}</p>
+                <BookLink className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-olive-ink underline-offset-4 hover:underline">
+                  Book appointment
+                  <span aria-hidden="true">&rarr;</span>
+                </BookLink>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

@@ -1,27 +1,21 @@
 import Header from "./components/Header";
-import PromoBand from "./components/PromoBand";
-import HeroBanner from "./components/HeroBanner";
-import Intro from "./components/Intro";
-import GetStarted from "./components/GetStarted";
+import Hero from "./components/Hero";
+import WhyOliveLane from "./components/WhyOliveLane";
 import Services from "./components/Services";
+import Faq from "./components/Faq";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main>
-        <PromoBand />
-        <HeroBanner asHeading />
-        <Intro />
-        {/*
-          The Divi export repeats the "Aesthetic Services" banner here, and the
-          live MedCove page renders it twice as well. Kept for parity — delete
-          this line if the duplication was unintentional.
-        */}
-        <HeroBanner />
-        <GetStarted />
+      <main id="main">
+        <Hero />
+        <WhyOliveLane />
         <Services />
+        <Faq />
+        <Contact />
       </main>
       <Footer />
     </>
