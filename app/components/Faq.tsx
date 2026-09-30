@@ -2,7 +2,7 @@ const faqs = [
   {
     question: "What treatments does Olive Lane Aesthetics offer?",
     answer:
-      "Olive Lane offers injectable aesthetic treatments, including wrinkle relaxers and dermal fillers. Contact us to learn more about available treatments.",
+      "Olive Lane offers injectable aesthetic treatments, including wrinkle relaxers and dermal fillers, along with IV wellness drips. Contact us to learn more about available treatments.",
   },
   {
     question: "How do I know which treatment is right for me?",

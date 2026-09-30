@@ -18,6 +18,29 @@ const fillerAreas = [
   "Facial Volume Restoration",
 ];
 
+const ivDrips = [
+  {
+    name: "Myers' Cocktail",
+    price: "$149",
+    detail: "Multivitamin blend for energy and immune support.",
+  },
+  {
+    name: "Hydration & Electrolyte Drip",
+    price: "$135",
+    detail: "Replenishes fluids and electrolytes.",
+  },
+  {
+    name: "High-Dose Vitamin C (10–25 g)",
+    price: "$195",
+    detail: "Doses over 10 g require G6PD screening beforehand.",
+  },
+  {
+    name: "Myers' + Vitamin C Boost (10 g total)",
+    price: "$225",
+    detail: "Classic Myers' with added 9 g Vitamin C, a premium custom blend.",
+  },
+];
+
 const fillers = [
   {
     name: "Restylane L",
@@ -173,6 +196,40 @@ export default function Services() {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="mt-20 border-t border-beige pt-16 sm:mt-24 sm:pt-20">
+          <h2 id="iv-drips-heading" className="text-4xl sm:text-5xl">
+            IV Wellness Drips
+          </h2>
+          <p className="mt-5 max-w-2xl text-[1.05rem] leading-relaxed">
+            IV wellness drips are available alongside injectable treatments. Your
+            provider can help you choose the option that fits your visit.
+          </p>
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+            {ivDrips.map((drip) => (
+              <li
+                key={drip.name}
+                className="flex flex-col rounded-[22px] border border-beige bg-ivory p-6 sm:p-7"
+              >
+                <h3 className="text-[1.85rem] leading-tight">{drip.name}</h3>
+                <p className="mt-3 font-serif text-[2rem] leading-none text-deep">{drip.price}</p>
+                <p className="mt-4 flex-1 leading-relaxed">{drip.detail}</p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10 flex flex-col items-start gap-3">
+            <BookLink className="btn btn-primary">
+              Book your appointment
+              <span aria-hidden="true">&rarr;</span>
+            </BookLink>
+            <BookLink
+              href={site.consultationUrl}
+              className="text-sm font-semibold text-olive-ink underline-offset-4 hover:underline"
+            >
+              Book a free consultation
+            </BookLink>
+          </div>
         </div>
       </div>
     </section>
