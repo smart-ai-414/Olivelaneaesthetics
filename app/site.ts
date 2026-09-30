@@ -20,7 +20,7 @@ export const site = {
       "https://www.google.com/maps/dir/?api=1&destination=1202+E+20th+St+Unit+E,+Upland,+CA+91784",
   },
 
-  hours: "Every day, 9:00 AM – 9:00 PM",
+  hours: "By appointment only",
 
   bookingUrl: "https://zipclinical.com/book/medcove",
 
