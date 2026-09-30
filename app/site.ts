@@ -23,6 +23,8 @@ export const site = {
   hours: "By appointment only",
 
   bookingUrl: "https://zipclinical.com/book/medcove",
+  // Same scheduler until the team sends a separate consultation link.
+  consultationUrl: "https://zipclinical.com/book/medcove",
 
   instagram: "",
 } as const;

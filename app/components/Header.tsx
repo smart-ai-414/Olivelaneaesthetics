@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { site } from "../site";
 import BookLink from "./BookLink";
@@ -10,6 +10,70 @@ const links = [
   { label: "Treatments", href: "#treatments" },
   { label: "Contact", href: "#contact" },
 ];
+
+function BookMenu() {
+  const [open, setOpen] = useState(false);
+  const menuId = useId();
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    const onPointer = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onPointer);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onPointer);
+    };
+  }, [open]);
+
+  return (
+    <div ref={rootRef} className="relative">
+      <button
+        type="button"
+        className="btn btn-primary btn-sm"
+        aria-expanded={open}
+        aria-haspopup="menu"
+        aria-controls={menuId}
+        onClick={() => setOpen((value) => !value)}
+      >
+        Book
+        <span
+          aria-hidden="true"
+          className={`inline-block border-x-[4px] border-t-[5px] border-x-transparent border-t-current transition ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open ? (
+        <div
+          id={menuId}
+          role="menu"
+          className="absolute right-0 z-50 mt-2 w-64 rounded-2xl border border-beige bg-white p-2 shadow-[0_16px_40px_-24px_rgba(75,73,62,0.5)]"
+        >
+          <BookLink
+            role="menuitem"
+            className="block rounded-xl px-3 py-3 text-left text-sm font-semibold tracking-normal text-deep normal-case hover:bg-ivory"
+            onClick={() => setOpen(false)}
+          >
+            Book appointment
+          </BookLink>
+          <BookLink
+            href={site.consultationUrl}
+            role="menuitem"
+            className="block rounded-xl px-3 py-3 text-left text-sm font-semibold tracking-normal text-deep normal-case hover:bg-ivory"
+            onClick={() => setOpen(false)}
+          >
+            Book a free consultation
+          </BookLink>
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -47,14 +111,11 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <BookLink className="btn btn-primary btn-sm">Book now</BookLink>
+          <BookMenu />
         </nav>
 
         <div className="ml-auto flex shrink-0 items-center gap-1 lg:hidden">
-          <BookLink className="btn btn-primary btn-sm">
-            <span className="sm:hidden">Book</span>
-            <span className="hidden sm:inline">Book now</span>
-          </BookLink>
+          <BookMenu />
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
@@ -93,6 +154,16 @@ export default function Header() {
             {link.label}
           </a>
         ))}
+        <BookLink onClick={() => setOpen(false)} className="block py-3 text-base font-semibold text-deep">
+          Book appointment
+        </BookLink>
+        <BookLink
+          href={site.consultationUrl}
+          onClick={() => setOpen(false)}
+          className="block pb-3 text-base font-semibold text-deep"
+        >
+          Book a free consultation
+        </BookLink>
       </nav>
     </header>
   );

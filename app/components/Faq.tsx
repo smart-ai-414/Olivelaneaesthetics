@@ -16,7 +16,8 @@ const faqs = [
   },
   {
     question: "How do I book an appointment?",
-    answer: "Click the BOOK NOW button to access our appointment booking system.",
+    answer:
+      "Choose Book appointment or Book a free consultation to open our booking system.",
   },
   {
     question: "Where is Olive Lane Aesthetics located?",

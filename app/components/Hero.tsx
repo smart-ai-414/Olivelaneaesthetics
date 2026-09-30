@@ -1,4 +1,5 @@
 import BookLink from "./BookLink";
+import { site } from "../site";
 
 export default function Hero() {
   return (
@@ -22,11 +23,19 @@ export default function Hero() {
               individualized care.
             </p>
           </div>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-            <BookLink className="btn btn-primary w-full sm:w-auto">
-              Book your appointment
-              <span aria-hidden="true">&rarr;</span>
-            </BookLink>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-start">
+            <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:items-start">
+              <BookLink className="btn btn-primary w-full sm:w-auto">
+                Book your appointment
+                <span aria-hidden="true">&rarr;</span>
+              </BookLink>
+              <BookLink
+                href={site.consultationUrl}
+                className="text-center text-sm font-semibold text-olive-ink underline-offset-4 hover:underline sm:text-left"
+              >
+                Book a free consultation
+              </BookLink>
+            </div>
             <a href="#treatments" className="btn btn-secondary w-full sm:w-auto">
               Explore treatments
               <span aria-hidden="true">&darr;</span>

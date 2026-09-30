@@ -14,10 +14,18 @@ export default function Contact() {
               Ready to explore your aesthetic goals? We&rsquo;re here to help you
               take the next step.
             </p>
-            <BookLink className="btn btn-primary mt-8">
-              Book your appointment
-              <span aria-hidden="true">&rarr;</span>
-            </BookLink>
+            <div className="mt-8 flex flex-col items-start gap-3">
+              <BookLink className="btn btn-primary">
+                Book your appointment
+                <span aria-hidden="true">&rarr;</span>
+              </BookLink>
+              <BookLink
+                href={site.consultationUrl}
+                className="text-sm font-semibold text-olive-ink underline-offset-4 hover:underline"
+              >
+                Book a free consultation
+              </BookLink>
+            </div>
           </div>
 
           <div className="relative order-2 min-h-[280px] bg-beige sm:min-h-[320px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:min-h-full">

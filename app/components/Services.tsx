@@ -1,4 +1,5 @@
 import BookLink from "./BookLink";
+import { site } from "../site";
 
 const wrinkleAreas = [
   "Botox",
@@ -117,10 +118,18 @@ export default function Services() {
           </div>
         </div>
 
-        <BookLink className="btn btn-primary mt-10">
-          Book your appointment
-          <span aria-hidden="true">&rarr;</span>
-        </BookLink>
+        <div className="mt-10 flex flex-col items-start gap-3">
+          <BookLink className="btn btn-primary">
+            Book your appointment
+            <span aria-hidden="true">&rarr;</span>
+          </BookLink>
+          <BookLink
+            href={site.consultationUrl}
+            className="text-sm font-semibold text-olive-ink underline-offset-4 hover:underline"
+          >
+            Book a free consultation
+          </BookLink>
+        </div>
 
         <div className="mt-20 border-t border-beige pt-16 sm:mt-24 sm:pt-20">
           <h2 id="filler-heading" className="text-4xl sm:text-5xl">
