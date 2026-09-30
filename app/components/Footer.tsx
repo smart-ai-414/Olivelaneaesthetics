@@ -14,18 +14,19 @@ export default function Footer() {
             className="h-10 w-auto"
           />
         </a>
-        <div className="flex flex-col gap-2 sm:items-end">
-          {site.instagram ? (
+        <div className="flex flex-col gap-3 sm:items-end">
+          <div className="flex flex-col gap-1 sm:items-end">
+            <p className="text-xs font-semibold tracking-[0.16em] text-deep uppercase">Follow</p>
             <a
               href={site.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-deep hover:underline"
+              className="text-sm font-semibold text-olive-ink underline-offset-4 hover:underline"
             >
               Instagram
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
-          ) : null}
+          </div>
           <p className="text-sm">
             Copyright &copy; {new Date().getFullYear()} {site.name}
           </p>

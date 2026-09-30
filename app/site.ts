@@ -26,5 +26,5 @@ export const site = {
   // Same scheduler until the team sends a separate consultation link.
   consultationUrl: "https://zipclinical.com/book/medcove",
 
-  instagram: "",
+  instagram: "https://www.instagram.com/olivelaneaesthetics",
 } as const;
