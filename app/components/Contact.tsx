@@ -5,8 +5,8 @@ export default function Contact() {
   return (
     <section id="contact" className="px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8" aria-labelledby="contact-heading">
       <div className="mx-auto max-w-[1120px] overflow-hidden rounded-[28px] border border-beige bg-white">
-        <div className="grid lg:grid-cols-2">
-          <div className="px-6 py-10 sm:px-10 sm:py-14 lg:px-12">
+        <div className="flex flex-col lg:grid lg:grid-cols-2">
+          <div className="order-1 px-6 py-10 sm:px-10 sm:py-14 lg:col-start-1 lg:px-12">
             <h2 id="contact-heading" className="text-4xl leading-[1.05] sm:text-[3.15rem]">
               Your Next Chapter Starts Here.
             </h2>
@@ -20,7 +20,17 @@ export default function Contact() {
             </BookLink>
           </div>
 
-          <div className="bg-ivory px-6 py-10 sm:px-10 sm:py-14 lg:h-full lg:px-12">
+          <div className="relative order-2 min-h-[280px] bg-beige sm:min-h-[320px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:min-h-full">
+            <iframe
+              src={site.address.mapEmbed}
+              title={`Map showing ${site.name}, ${site.address.line1}, ${site.address.line2}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 h-full w-full border-0"
+            />
+          </div>
+
+          <div className="order-3 bg-ivory px-6 py-10 sm:px-10 sm:py-14 lg:col-start-1 lg:px-12">
             <dl className="space-y-7">
               <div>
                 <dt className="text-xs font-semibold tracking-[0.16em] text-deep uppercase">
@@ -70,14 +80,6 @@ export default function Contact() {
             </dl>
           </div>
         </div>
-
-        <iframe
-          src={site.address.mapEmbed}
-          title={`Map showing ${site.name}, ${site.address.line1}, ${site.address.line2}`}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="h-64 w-full border-0 bg-beige sm:h-72"
-        />
       </div>
     </section>
   );
